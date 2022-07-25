@@ -10,8 +10,8 @@ type Message struct {
 type Option int64
 
 const (
-	Connect Option = 0
-	Talk    Option = 1
+//Connect Option = 0
+//Talk    Option = 1
 )
 
 // SliceMock 用来转换[]byte和struct
