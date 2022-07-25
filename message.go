@@ -14,10 +14,22 @@ const (
 	Talk    Option = 1
 )
 
+// SliceMock 用来转换[]byte和struct
+type SliceMock struct {
+	addr uintptr
+	len  int
+	cap  int
+}
+
 func BytesToMessage(data []byte) *Message {
 	return *(**Message)(unsafe.Pointer(&data))
 }
 
 func MessageToBytes(message *Message) []byte {
-	return *(*[]byte)(unsafe.Pointer(message))
+	messageLen := unsafe.Sizeof(*message)
+	return *(*[]byte)(unsafe.Pointer(&SliceMock{
+		addr: uintptr(unsafe.Pointer(message)),
+		cap:  int(messageLen),
+		len:  int(messageLen),
+	}))
 }
