@@ -1,9 +1,9 @@
 package go_talk
 
 import (
+	"fmt"
 	"log"
 	"net"
-	"unsafe"
 )
 
 type Server struct {
@@ -23,7 +23,7 @@ func (s *Server) Start(port string) {
 		if err != nil {
 			log.Println("Connect error: ", err)
 		} else {
-			log.Printf("Connect success, ip=%v\n", conn, conn.RemoteAddr().String())
+			log.Printf("Connect success, ip=%v\n", conn.RemoteAddr().String())
 			go s.serverProcess(conn)
 		}
 	}
@@ -32,12 +32,26 @@ func (s *Server) Start(port string) {
 func (s *Server) serverProcess(conn net.Conn) {
 	defer conn.Close()
 	buf := make([]byte, 1024*1024)
-	n, err := conn.Read(buf)
-	if err != nil {
-		log.Println("Client out err=", err)
-		return
+	for {
+		n, err := conn.Read(buf)
+		if err != nil {
+			log.Println("Client out err=", err)
+			return
+		}
+		data := buf[:n]
+		//message := *(**Message)(unsafe.Pointer(&data))
+		message := string(data)
+		log.Println("Serve read success: ", message)
+		//message = &Message{
+		//	Option: 2,
+		//}
+		//_, err = conn.Write(*(*[]byte)(unsafe.Pointer(message)))
+		_, err = conn.Write([]byte("---server message---"))
+		if err != nil {
+			log.Println("serve write error")
+		} else {
+			log.Println("Serve write success")
+		}
+		fmt.Println("-----------------------------------------------------")
 	}
-	data := buf[:n]
-	message := *(**Message)(unsafe.Pointer(&data))
-	log.Println(message)
 }
