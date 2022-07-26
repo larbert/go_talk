@@ -14,8 +14,10 @@ func main() {
 	case 1:
 		var port string
 		var name string
-		fmt.Print("Server addr and name: ")
-		fmt.Scanf("%s %s", &port, &name)
+		fmt.Print("Server addr: ")
+		fmt.Scanf("%s", &port)
+		fmt.Print("Server name: ")
+		fmt.Scanf("%s", &name)
 		serve("172.26.63.255:8080", "1111")
 	case 2:
 		var addr string
