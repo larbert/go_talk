@@ -12,12 +12,12 @@ func main() {
 	fmt.Scanf("%d", &op)
 	switch op {
 	case 1:
-		serve(":8080", "1111")
+		serve("0.0.0.0:8080", "1111")
 	case 2:
 		var addr string
 		fmt.Print("Server IP: ")
 		fmt.Scanf("%s", &addr)
-        fmt.Println("Read to connect ", addr)
+		fmt.Println("Read to connect ", addr)
 		client(addr)
 	}
 }
