@@ -17,6 +17,7 @@ func main() {
 		var addr string
 		fmt.Print("Server IP: ")
 		fmt.Scanf("%s", &addr)
+        fmt.Println("Read to connect ", addr)
 		client(addr)
 	}
 }
