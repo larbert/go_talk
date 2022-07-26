@@ -18,7 +18,7 @@ func main() {
 		fmt.Scanf("%s", &port)
 		fmt.Print("Server name: ")
 		fmt.Scanf("%s", &name)
-		serve("172.26.63.255:8080", "1111")
+		serve(port, name)
 	case 2:
 		var addr string
 		fmt.Print("Server IP: ")
