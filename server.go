@@ -39,14 +39,12 @@ func (s *Server) serverProcess(conn net.Conn) {
 			return
 		}
 		data := buf[:n]
-		//message := *(**Message)(unsafe.Pointer(&data))
-		message := string(data)
+		message := BytesToMessage(data)
 		log.Println("Serve read success: ", message)
-		//message = &Message{
-		//	Option: 2,
-		//}
-		//_, err = conn.Write(*(*[]byte)(unsafe.Pointer(message)))
-		_, err = conn.Write([]byte("---server message---"))
+		message = &Message{
+			Option: 2,
+		}
+		_, err = conn.Write(MessageToBytes(message))
 		if err != nil {
 			log.Println("serve write error")
 		} else {
