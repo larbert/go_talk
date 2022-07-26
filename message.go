@@ -4,7 +4,7 @@ import "unsafe"
 
 type Message struct {
 	Option
-	Payload interface{}
+	Payload string
 }
 
 type Option int64
