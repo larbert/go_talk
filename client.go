@@ -33,6 +33,10 @@ func (c *Client) Connect(addr string) {
 			data := buf[:n]
 			message = BytesToMessage(data)
 			log.Println("Client read success: ", message)
+			switch message.Option {
+			case OptionACK:
+				log.Println("ACK")
+			}
 		}
 	}
 }
