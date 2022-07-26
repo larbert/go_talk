@@ -1,6 +1,7 @@
 package go_talk
 
 import (
+	"fmt"
 	"log"
 	"net"
 )
@@ -17,8 +18,15 @@ func (c *Client) Connect(addr string) {
 	defer conn.Close()
 	buf := make([]byte, 1024*1024)
 	for {
+		var payload string
+		var option int
+		fmt.Println("option")
+		fmt.Scanf("%d", &option)
+		fmt.Println("payload")
+		fmt.Scanf("%s", &payload)
 		message := &Message{
-			Option: 0,
+			Option:  Option(option),
+			Payload: payload,
 		}
 		_, err := conn.Write(MessageToBytes(message))
 		if err != nil {
