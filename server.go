@@ -41,7 +41,8 @@ func (s *Server) serverProcess(conn net.Conn) {
 		}
 		data := buf[:n]
 		request := BytesToMessage(data)
-		log.Println("Serve read success: ", request)
+		log.Println(data)
+		log.Println("Serve read success: ", request.Option, " ", request.Payload)
 		// 根据Message的Option执行对应的操作
 		response := &Message{}
 		switch request.Option {

@@ -7,7 +7,8 @@ import (
 
 func TestMessage(t *testing.T) {
 	m := &Message{
-		Option: 1,
+		Option:  5,
+		Payload: "Lyg",
 	}
 	fmt.Println(m)
 	data := MessageToBytes(m)

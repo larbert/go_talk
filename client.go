@@ -31,8 +31,9 @@ func (c *Client) Connect(addr string) {
 			Option:  Option(option),
 			Payload: payload,
 		}
-        log.Println(message)
-        log.Println(MessageToBytes(message))
+		log.Println(message)
+		log.Println(MessageToBytes(message))
+		log.Println(BytesToMessage(MessageToBytes(message)))
 		_, err := conn.Write(MessageToBytes(message))
 		if err != nil {
 			log.Println("Client.write error: ", err)
