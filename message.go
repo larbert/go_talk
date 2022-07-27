@@ -12,9 +12,10 @@ type Option int64
 const (
 	OptionConnect  Option = 0
 	OptionError    Option = 1
-	OptionTalk     Option = 2
-	OptionACK      Option = 3
-	OptionJoinRoom Option = 4
+	OptionACK      Option = 2
+	OptionRoom     Option = 3
+	OptionTalk     Option = 4
+	OptionJoinRoom Option = 5
 )
 
 // SliceMock 用来转换[]byte和struct

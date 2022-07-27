@@ -20,6 +20,9 @@ func (c *Client) Connect(addr string) {
 	for {
 		var payload string
 		var option int
+		fmt.Println("----Options----")
+		fmt.Println("|OptionConnect |")
+		fmt.Println("----Options----")
 		fmt.Println("option")
 		fmt.Scanf("%d", &option)
 		fmt.Println("payload")
