@@ -12,7 +12,13 @@ func main() {
 	fmt.Scanf("%d", &op)
 	switch op {
 	case 1:
-		serve("0.0.0.0:8080", "1111")
+		var port string
+		var name string
+		fmt.Print("Server addr: ")
+		fmt.Scanf("%s", &port)
+		fmt.Print("Server name: ")
+		fmt.Scanf("%s", &name)
+		serve(port, name)
 	case 2:
 		var addr string
 		fmt.Print("Server IP: ")
