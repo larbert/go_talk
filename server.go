@@ -40,11 +40,11 @@ func (s *Server) serverProcess(conn net.Conn) {
 			return
 		}
 		data := buf[:n]
-		message := BytesToMessage(data)
-		log.Println("Serve read success: ", message)
+		request := BytesToMessage(data)
+		log.Println("Serve read success: ", request)
 		// 根据Message的Option执行对应的操作
 		response := &Message{}
-		switch message.Option {
+		switch request.Option {
 		case OptionConnect:
 			s.connect(conn, request, response)
 		case OptionTalk:
@@ -69,7 +69,7 @@ func (s *Server) connect(conn net.Conn, request *Message, response *Message) {
 }
 
 func (s *Server) joinRoom(conn net.Conn, request *Message, response *Message) {
-	for r := range s.Rooms {
+	for _, r := range s.Rooms {
 		if r.Name == request.Payload {
 			response.Option = OptionACK
 			response.Payload = r.Name
