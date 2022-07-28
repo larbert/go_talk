@@ -19,7 +19,7 @@ func (c *Client) Connect(addr string) {
 	buf := make([]byte, 1024*1024)
 	for {
 		var payload string
-		var option int
+		var option int64
 		fmt.Println("----Options----")
 		fmt.Println("|OptionConnect |")
 		fmt.Println("----Options----")
