@@ -19,7 +19,7 @@ func (c *Client) Connect(addr string) {
 	buf := make([]byte, 1024*1024)
 	for {
 		var payload string
-		var option int
+		var option int64
 		fmt.Println("----Options----")
 		fmt.Println("|OptionConnect |")
 		fmt.Println("----Options----")
@@ -31,6 +31,9 @@ func (c *Client) Connect(addr string) {
 			Option:  Option(option),
 			Payload: payload,
 		}
+		log.Println(message)
+		log.Println(MessageToBytes(message))
+		log.Println(BytesToMessage(MessageToBytes(message)))
 		_, err := conn.Write(MessageToBytes(message))
 		if err != nil {
 			log.Println("Client.write error: ", err)

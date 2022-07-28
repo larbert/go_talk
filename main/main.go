@@ -2,11 +2,20 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/larbert/go_talk"
 )
 
 func main() {
+	for _, arg := range os.Args {
+		fmt.Println(arg)
+	}
+	if len(os.Args) == 4 {
+		if os.Args[1] == "-s" {
+			serve(os.Args[2], os.Args[3])
+		}
+	}
 	menu()
 	var op int
 	fmt.Scanf("%d", &op)
